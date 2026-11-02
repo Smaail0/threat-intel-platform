@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+venv/
+.venv/
+.env
+node_modules/
+dist/
+*.log
+
+# Not redistributed: MaxMind GeoLite2 databases (licence) and the ATT&CK dump
+backend/data/geoip/
+backend/data/attack/
+
+# Raw honeypot logs contain attacker IPs
+honeypots/cowrie/logs/

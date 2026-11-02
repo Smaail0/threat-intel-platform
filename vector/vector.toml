@@ -1,0 +1,28 @@
+[sources.cowrie_logs]
+type = "file"
+include = ["/cowrie-logs/cowrie.json"]
+read_from = "beginning"
+ignore_older_secs = 86400
+fingerprint.strategy = "device_and_inode"
+
+[transforms.parse_cowrie_json]
+type = "remap"
+inputs = ["cowrie_logs"]
+source = '''
+parsed = parse_json!(string!(.message))
+. = parsed
+.payload = parsed
+'''
+
+[sinks.console_debug]
+type = "console"
+inputs = ["parse_cowrie_json"]
+encoding.codec = "json"
+
+[sinks.fastapi_ingest]
+type = "http"
+inputs = ["parse_cowrie_json"]
+uri = "http://host.docker.internal:8000/ingest"
+method = "post"
+encoding.codec = "json"
+healthcheck.enabled = false

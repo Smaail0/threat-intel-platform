@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  cowrie:
+    image: cowrie/cowrie:latest
+    container_name: cowrie
+    restart: unless-stopped
+
+    ports:
+      - "2222:2222"
+
+    volumes:
+      - cowrie-var:/cowrie/cowrie-git/var
+      - cowrie-etc:/cowrie/cowrie-git/etc
+      - ./logs:/cowrie/cowrie-git/var/log/cowrie
+
+volumes:
+  cowrie-var:
+  cowrie-etc:

